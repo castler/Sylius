@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sylius\Component\Core\OrderProcessing;
 
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
@@ -39,7 +40,7 @@ final class OrderShipmentProcessor implements OrderProcessorInterface
 
     /**
      * @param DefaultShippingMethodResolverInterface $defaultShippingMethodResolver
-     * @param FactoryInterface $shipmentFactory
+     * @param FactoryInterface                       $shipmentFactory
      */
     public function __construct(
         DefaultShippingMethodResolverInterface $defaultShippingMethodResolver,
@@ -57,7 +58,7 @@ final class OrderShipmentProcessor implements OrderProcessorInterface
         /** @var OrderInterface $order */
         Assert::isInstanceOf($order, OrderInterface::class);
 
-        if ($order->isEmpty()) {
+        if ($order->isEmpty() || ! $this->ifItemsRequireShipping($order)) {
             $order->removeShipments();
 
             return;
@@ -77,7 +78,7 @@ final class OrderShipmentProcessor implements OrderProcessorInterface
     }
 
     /**
-     * @param BaseOrderInterface $order
+     * @param BaseOrderInterface | OrderInterface $order
      *
      * @return ShipmentInterface
      */
@@ -99,5 +100,22 @@ final class OrderShipmentProcessor implements OrderProcessorInterface
         } catch (UnresolvedDefaultShippingMethodException $exception) {
             return null;
         }
+    }
+
+    /**
+     * @param OrderInterface $order
+     *
+     * @return bool
+     */
+    private function ifItemsRequireShipping(OrderInterface $order)
+    {
+        /** @var OrderItemInterface $orderItem */
+        foreach ($order->getItems() as $orderItem) {
+            if ($orderItem->getVariant()->isShippingRequired()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
