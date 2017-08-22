@@ -349,6 +349,8 @@
 
 ### Mailer / MailerBundle
 
+* `Email` has been made final, use decoration instead of extending it.
+
 ### MoneyBundle
 
 ### Order / OrderBundle
