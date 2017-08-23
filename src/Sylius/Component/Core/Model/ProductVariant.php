@@ -201,7 +201,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingCategory()
+    public function getShippingCategory(): ? ShippingCategoryInterface
     {
         return $this->shippingCategory;
     }
@@ -281,7 +281,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingWeight()
+    public function getShippingWeight(): ?float
     {
         return $this->getWeight();
     }
@@ -289,7 +289,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingWidth()
+    public function getShippingWidth(): ?float
     {
         return $this->getWidth();
     }
@@ -297,7 +297,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingHeight()
+    public function getShippingHeight(): ?float
     {
         return $this->getHeight();
     }
@@ -305,7 +305,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingDepth()
+    public function getShippingDepth(): ?float
     {
         return $this->getDepth();
     }
@@ -313,7 +313,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingVolume()
+    public function getShippingVolume(): ?float
     {
         return $this->depth * $this->height * $this->width;
     }
