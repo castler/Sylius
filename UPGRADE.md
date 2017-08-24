@@ -107,6 +107,12 @@
     * `ShipmentInterface::setMethod`
     * `ShipmentUnitInterface::setShipment`
     * `ShipmentMethodInterface::setCategory`
+    
+### Taxation / TaxationBundle
+
+* The following methods does not longer have a default null argument and requires one to be explicitly passed:
+
+  * `TaxRateInterface::setTranslatable`
 
 ### Taxonomy / TaxonomyBundle
 
