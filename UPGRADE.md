@@ -113,6 +113,7 @@
 * The following methods does not longer have a default null argument and requires one to be explicitly passed:
 
   * `TaxRateInterface::setTranslatable`
+  * `TaxRateInterface::setCategory`
 
 ### Taxonomy / TaxonomyBundle
 
