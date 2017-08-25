@@ -39,7 +39,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
     /**
      * {@inheritdoc}
      */
-    public function convert($code, array $configuration)
+    public function convert(string $code, array $configuration): Grid
     {
         $grid = Grid::fromCodeAndDriverConfiguration(
             $code,
@@ -78,7 +78,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
      *
      * @return Field
      */
-    private function convertField($name, array $configuration)
+    private function convertField(string $name, array $configuration): Field
     {
         $field = Field::fromNameAndType($name, $configuration['type']);
 
@@ -115,7 +115,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
      *
      * @return Filter
      */
-    private function convertFilter($name, array $configuration)
+    private function convertFilter(string $name, array $configuration): Filter
     {
         $filter = Filter::fromNameAndType($name, $configuration['type']);
 
@@ -150,7 +150,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
      *
      * @return ActionGroup
      */
-    private function convertActionGroup($name, array $configuration)
+    private function convertActionGroup(string $name, array $configuration): ActionGroup
     {
         $actionGroup = ActionGroup::named($name);
 
@@ -167,7 +167,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
      *
      * @return Action
      */
-    private function convertAction($name, array $configuration)
+    private function convertAction(string $name, array $configuration): Action
     {
         $action = Action::fromNameAndType($name, $configuration['type']);
 
@@ -195,7 +195,7 @@ final class ArrayToDefinitionConverter implements ArrayToDefinitionConverterInte
      *
      * @return string
      */
-    private function getEventName($code)
+    private function getEventName(string $code): string
     {
         return sprintf(self::EVENT_NAME, str_replace('sylius_', '', $code));
     }
