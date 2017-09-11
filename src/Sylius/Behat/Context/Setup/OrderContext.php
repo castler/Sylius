@@ -556,6 +556,7 @@ final class OrderContext implements Context
         $this->addVariantWithPriceToOrder($order, $product->getVariants()->first(), $price);
 
         $this->orderRepository->add($order);
+        $this->sharedStorage->set('order',  $order);
     }
 
     /**
