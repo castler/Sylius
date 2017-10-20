@@ -18,9 +18,6 @@ use Sylius\Component\Customer\Model\CustomerInterface as BaseCustomerInterface;
 use Sylius\Component\User\Model\UserAwareInterface;
 use Sylius\Component\User\Model\UserInterface;
 
-/**
- * @author Michał Marcinkowski <michal.marcinkowski@lakion.com>
- */
 interface CustomerInterface extends BaseCustomerInterface, UserAwareInterface, ProductReviewerInterface
 {
     /**
